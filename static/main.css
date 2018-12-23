@@ -1,6 +1,9 @@
 body {
   background-color: black;
   font-family: "Waiting for the Sunrise", cursive;
+  color: white;
+  text-align: center;
+  font-size: 72pt;
 }
 
 .star {
