@@ -38,6 +38,8 @@ async function _makeGallery() {
     thumbnailBorderHorizontal: 0,
     thumbnailBorderVertical: 0,
     thumbnailHoverEffect2: "image_scale_1.00_.95",
+    viewerToolbar: { display: false },
+    viewerTools: { topLeft: "", topRight: "closeButton" },
 
     galleryMosaic: [
       { r: 1, c: 1, w: 2, h: 2 },

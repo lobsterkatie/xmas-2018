@@ -41,3 +41,20 @@ svg {
 text {
   fill: #b8d3ee;
 }
+
+.nGY2ViewerContainer {
+  font-size: 16pt;
+}
+
+.nGY2ViewerAreaPrevious {
+  margin-left: 50px;
+}
+
+.nGY2ViewerAreaNext {
+  margin-right: 50px;
+}
+
+.nGY2ViewerToolsTopRight {
+  margin-right: 10px;
+  font-size: 12pt;
+}
