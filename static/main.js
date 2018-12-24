@@ -73,21 +73,24 @@ async function _makeGallery() {
   });
 }
 
-makeGallery();
-
 // hack to make text svg's responsive to viewport changes: set the svg's
 // viewBox to be the same as the bounding box of the text
-setTimeout(function() {
-  $("svg").each(function() {
-    var svg = $(this);
-    var text = svg.find("text");
-    var bbox = text.get(0).getBBox();
+function makeSVGsResponsive() {
+  setTimeout(function() {
+    $("svg").each(function() {
+      var svg = $(this);
+      var text = svg.find("text");
+      var bbox = text.get(0).getBBox();
 
-    svg
-      .get(0)
-      .setAttribute(
-        "viewBox",
-        [bbox.x, bbox.y, bbox.width, bbox.height].join(" ")
-      );
-  });
-}, 100);
+      svg
+        .get(0)
+        .setAttribute(
+          "viewBox",
+          [bbox.x, bbox.y, bbox.width, bbox.height].join(" ")
+        );
+    });
+  }, 100);
+}
+
+makeSVGsResponsive();
+makeGallery();
