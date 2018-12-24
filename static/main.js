@@ -1,3 +1,10 @@
+/****************** USEFUL GLOBALS ******************/
+
+let windowHeight = $(window).height();
+let sectionIndex = 0;
+
+/****************** HELPER FUNCTIONS FOR GALLERY ******************/
+
 // hack to make flexbox work, so the gallery can be centered vertically:
 // wait to put flex class on until the gallery is fully made
 // in the meantime, hide it so we don't see it move when the class is added
@@ -24,7 +31,6 @@ async function makeGallery(windowHeight) {
 async function _makeGallery(windowHeight) {
   // we want the whole gallery to be 80% of the viewport height, and there
   // 4 rows, so each row's height should be 20% of the viewport height
-
   let thumbnailDimension = windowHeight / 5;
 
   $("#gallery").nanogallery2({
@@ -75,11 +81,12 @@ async function _makeGallery(windowHeight) {
   });
 }
 
+/****************** HELPER FUNCTIONS FOR SCROLLING ******************/
+
 function timer(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-let windowHeight = $(window).height();
 async function scroll(windowHeight) {
   window.scrollBy({
     top: windowHeight,
@@ -107,7 +114,7 @@ function addScrolling(windowHeight) {
   $(".nGY2ViewerContainer").click(evt => evt.stopPropagation());
 }
 
-let sectionIndex = 0;
+/****************** STUFF THAT ACTUALL HAPPENS ******************/
 
 makeGallery(windowHeight);
 addScrolling(windowHeight);
