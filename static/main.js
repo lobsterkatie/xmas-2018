@@ -1,11 +1,11 @@
 // hack to make flexbox work, so the gallery can be centered vertically:
 // wait to put flex class on until the gallery is fully made
 // in the meantime, hide it so we don't see it move when the class is added
-async function makeGallery() {
+async function makeGallery(windowHeight) {
   $("#gallery").css("visibility", "hidden");
 
   // wait for the gallery to finish constructing itself
-  await _makeGallery();
+  await _makeGallery(windowHeight);
 
   // psych! it's not done.
   // wait an extra second until the gallery is *actually* done, then make it
@@ -21,10 +21,10 @@ async function makeGallery() {
 
 // wrap the gallery construction in an async function to make it promise-y and
 // awaitable
-async function _makeGallery() {
+async function _makeGallery(windowHeight) {
   // we want the whole gallery to be 80% of the viewport height, and there
   // 4 rows, so each row's height should be 20% of the viewport height
-  let windowHeight = $(window).height();
+
   let thumbnailDimension = windowHeight / 5;
 
   $("#gallery").nanogallery2({
@@ -94,5 +94,19 @@ function makeSVGsResponsive() {
   }, 100);
 }
 
+let windowHeight = $(window).height();
+
 makeSVGsResponsive();
-makeGallery();
+makeGallery(windowHeight);
+
+// make clicking anywhere (other than on the thumbnails or int the lightbox)_
+// scroll to the next section
+$("body").click(() => {
+  window.scrollBy({
+    top: windowHeight,
+    behavior: "smooth"
+  });
+});
+
+$("#gallery").click(evt => evt.stopPropagation());
+$(".nGY2ViewerContainer").click(evt => evt.stopPropagation());
