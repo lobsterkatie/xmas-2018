@@ -1,11 +1,43 @@
 body {
-  background-color: black;
+  background-color: #172121;
   font-family: "Waiting for the Sunrise", cursive;
-  color: white;
+  color: #b8d3ee;
   text-align: center;
   font-size: 72pt;
 }
 
+.window-height {
+  height: 100vh;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#adventure-awaits {
+  height: 80%;
+}
+
 .star {
   font-family: "Sue Ellen Francisco", cursive;
+}
+
+.text-line {
+  height: 18%;
+}
+
+.text-line.parenthetical {
+  height: 9%;
+}
+
+svg {
+  display: block;
+  margin: auto;
+  height: 80%;
+}
+
+text {
+  fill: #b8d3ee;
 }
