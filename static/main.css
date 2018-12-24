@@ -3,7 +3,7 @@ body {
   font-family: "Waiting for the Sunrise", cursive;
   color: #b8d3ee;
   text-align: center;
-  font-size: 72pt;
+  font-size: 15vh;
 }
 
 .window-height {
@@ -25,21 +25,13 @@ body {
 }
 
 .text-line {
-  height: 18%;
+  margin: 0;
+  line-height: 140%;
 }
 
-.text-line.parenthetical {
-  height: 9%;
-}
-
-svg {
-  display: block;
-  margin: auto;
-  height: 80%;
-}
-
-text {
-  fill: #b8d3ee;
+.parenthetical {
+  font-size: 50%;
+  margin-top: 3vh;
 }
 
 .nGY2ViewerContainer {

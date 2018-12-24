@@ -75,28 +75,10 @@ async function _makeGallery(windowHeight) {
   });
 }
 
-// hack to make text svg's responsive to viewport changes: set the svg's
-// viewBox to be the same as the bounding box of the text
-function makeSVGsResponsive() {
-  setTimeout(function() {
-    $("svg").each(function() {
-      var svg = $(this);
-      var text = svg.find("text");
-      var bbox = text.get(0).getBBox();
-
-      svg
-        .get(0)
-        .setAttribute(
-          "viewBox",
-          [bbox.x, bbox.y, bbox.width, bbox.height].join(" ")
-        );
-    });
-  }, 100);
 }
 
 let windowHeight = $(window).height();
 
-makeSVGsResponsive();
 makeGallery(windowHeight);
 
 // make clicking anywhere (other than on the thumbnails or int the lightbox)_
