@@ -75,20 +75,39 @@ async function _makeGallery(windowHeight) {
   });
 }
 
+function timer(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 let windowHeight = $(window).height();
-
-makeGallery(windowHeight);
-
-// make clicking anywhere (other than on the thumbnails or int the lightbox)_
-// scroll to the next section
-$("body").click(() => {
+async function scroll(windowHeight) {
   window.scrollBy({
     top: windowHeight,
     behavior: "smooth"
   });
-});
+  sectionIndex = sectionIndex + 1;
 
-$("#gallery").click(evt => evt.stopPropagation());
-$(".nGY2ViewerContainer").click(evt => evt.stopPropagation());
+  // make the text in the second section appear one line at a time
+  if (sectionIndex === 1) {
+    for (let line of $(".text-line")) {
+      console.log(line);
+      $(line).fadeIn(1000);
+      await timer(1500);
+    }
+  }
+}
+
+// make clicking anywhere (other than on the thumbnails or int the lightbox)_
+// scroll to the next section
+function addScrolling(windowHeight) {
+  $("body").click(() => {
+    scroll(windowHeight);
+  });
+  $("#gallery").click(evt => evt.stopPropagation());
+  $(".nGY2ViewerContainer").click(evt => evt.stopPropagation());
+}
+
+let sectionIndex = 0;
+
+makeGallery(windowHeight);
+addScrolling(windowHeight);

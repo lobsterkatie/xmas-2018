@@ -27,6 +27,7 @@ body {
 .text-line {
   margin: 0;
   line-height: 140%;
+  display: none;
 }
 
 .parenthetical {
