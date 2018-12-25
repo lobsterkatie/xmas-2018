@@ -53,6 +53,28 @@ body {
   font-family: "PW Small Icons", cursive;
 }
 
+#new-scroll-button {
+  position: fixed;
+  height: 20vh;
+  width: 9vh;
+  right: 2vh;
+  bottom: 2vh;
+  cursor: pointer;
+  display: none;
+}
+
+#scroll-button-text {
+  margin: 0;
+  line-height: 85%;
+  font-size: 32%;
+}
+
+#arrow2 {
+  transform: rotate(90deg) translate(-9vh, 1vh);
+  width: 11vh;
+  fill: #b8d3ee;
+}
+
 .star {
   font-family: "Sue Ellen Francisco", cursive;
 }

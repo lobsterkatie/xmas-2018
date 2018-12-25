@@ -93,7 +93,7 @@ function enumerateJQuery(jqueryObj) {
 }
 
 async function scroll(windowHeight) {
-  $("#scroll-button").hide();
+  $("#new-scroll-button").hide();
 
   window.scrollBy({
     top: windowHeight,
@@ -103,7 +103,7 @@ async function scroll(windowHeight) {
 
   // make the text in the second section appear one line at a time
   if (sectionIndex === 1) {
-    const delays = [2200, 2400, 2600, 2800, 1400, 2000, 3000];
+    const delays = [2200, 2400, 2600, 2800, 1400, 2000, 2600];
 
     await timer(1000);
     for (let [i, line] of enumerateJQuery($(".appearing-block"))) {
@@ -117,14 +117,14 @@ async function scroll(windowHeight) {
     await timer(2000);
   }
   if (sectionIndex !== 4) {
-    $("#scroll-button").fadeIn(1000);
+    $("#new-scroll-button").fadeIn(1000);
   }
 }
 
 async function initScrollButton(windowHeight) {
-  $("#scroll-button").click(() => scroll(windowHeight));
+  $("#new-scroll-button").click(() => scroll(windowHeight));
   await timer(1600);
-  $("#scroll-button").fadeIn(2000);
+  $("#new-scroll-button").fadeIn(2000);
 }
 
 /****************** STUFF THAT ACTUALL HAPPENS ******************/
