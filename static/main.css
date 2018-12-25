@@ -20,6 +20,29 @@ body {
   height: 80%;
 }
 
+#scroll-button {
+  position: fixed;
+  height: 12vh;
+  display: inline-block;
+  right: 2vh;
+  bottom: 2vh;
+  font-size: 50%;
+  padding: 1vh;
+  transform: translateX(-3vh);
+  cursor: pointer;
+}
+
+@font-face {
+  font-family: "PW Small Icons";
+  src: url("/static/PWSmallIcons.ttf");
+}
+
+#arrow {
+  display: inline-block;
+  transform: scale(-1, 1) translate(1vh, 3vh);
+  font-family: "PW Small Icons", cursive;
+}
+
 .star {
   font-family: "Sue Ellen Francisco", cursive;
 }

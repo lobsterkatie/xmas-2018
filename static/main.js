@@ -110,17 +110,7 @@ async function scroll(windowHeight) {
   }
 }
 
-// make clicking anywhere (other than on the thumbnails or int the lightbox)_
-// scroll to the next section
-function addScrolling(windowHeight) {
-  $("body").click(() => {
-    scroll(windowHeight);
-  });
-  $("#gallery").click(evt => evt.stopPropagation());
-  $(".nGY2ViewerContainer").click(evt => evt.stopPropagation());
-}
-
 /****************** STUFF THAT ACTUALL HAPPENS ******************/
 
 makeGallery(windowHeight);
-addScrolling(windowHeight);
+$("#scroll-button").click(() => scroll(windowHeight));
