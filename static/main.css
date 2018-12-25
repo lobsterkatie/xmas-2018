@@ -16,8 +16,19 @@ body {
   align-items: center;
 }
 
-.centered-img {
-  height: 80%;
+.section-contents {
+  height: 90%;
+}
+
+.section-header {
+  font-size: 50%;
+  line-height: 100%;
+  margin-top: 0;
+  margin-bottom: 2.5vh;
+}
+
+.section-body-img {
+  height: 80vh;
 }
 
 #scroll-button {
