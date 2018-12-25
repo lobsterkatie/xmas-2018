@@ -102,11 +102,12 @@ async function scroll(windowHeight) {
 
   // make the text in the second section appear one line at a time
   if (sectionIndex === 1) {
+    const delays = [2200, 2400, 2600, 2800, 1400, 2000, 3000];
+
     await timer(1000);
-    for (let [i, line] of enumerateJQuery($(".text-line"))) {
-      $(line).fadeIn(1000);
-      let delay = 2000 + 200 * (i + 1);
-      await timer(delay);
+    for (let [i, line] of enumerateJQuery($(".appearing-block"))) {
+      $(line).animate({ opacity: 1 }, 1000);
+      await timer(delays[i]);
     }
   }
 

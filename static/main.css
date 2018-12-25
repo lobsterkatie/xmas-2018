@@ -51,11 +51,17 @@ body {
 .text-line {
   margin: 0;
   line-height: 140%;
-  display: none;
+}
+
+.appearing-block {
+  opacity: 0;
+}
+
+.small-text {
+  font-size: 50%;
 }
 
 .parenthetical {
-  font-size: 50%;
   margin-top: 3vh;
 }
 
