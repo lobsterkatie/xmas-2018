@@ -23,7 +23,6 @@ body {
 #scroll-button {
   position: fixed;
   height: 12vh;
-  display: inline-block;
   right: 2vh;
   bottom: 2vh;
   font-size: 50%;

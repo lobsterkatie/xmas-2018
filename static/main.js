@@ -94,6 +94,7 @@ function enumerateJQuery(jqueryObj) {
 
 async function scroll(windowHeight) {
   $("#scroll-button").hide();
+
   window.scrollBy({
     top: windowHeight,
     behavior: "smooth"
@@ -122,7 +123,7 @@ async function scroll(windowHeight) {
 
 async function initScrollButton(windowHeight) {
   $("#scroll-button").click(() => scroll(windowHeight));
-  await timer(2000);
+  await timer(1600);
   $("#scroll-button").fadeIn(2000);
 }
 
