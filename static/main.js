@@ -87,6 +87,11 @@ function timer(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+function enumerateJQuery(jqueryObj) {
+  let array = $.makeArray(jqueryObj);
+  return array.entries();
+}
+
 async function scroll(windowHeight) {
   window.scrollBy({
     top: windowHeight,
@@ -96,10 +101,11 @@ async function scroll(windowHeight) {
 
   // make the text in the second section appear one line at a time
   if (sectionIndex === 1) {
-    for (let line of $(".text-line")) {
-      console.log(line);
+    await timer(1000);
+    for (let [i, line] of enumerateJQuery($(".text-line"))) {
       $(line).fadeIn(1000);
-      await timer(1500);
+      let delay = 2000 + 200 * (i + 1);
+      await timer(delay);
     }
   }
 }
