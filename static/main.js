@@ -93,7 +93,7 @@ function enumerateJQuery(jqueryObj) {
 }
 
 async function scroll(windowHeight) {
-  $("#new-scroll-button").hide();
+  $("#scroll-button").hide();
 
   window.scrollBy({
     top: windowHeight,
@@ -117,14 +117,14 @@ async function scroll(windowHeight) {
     await timer(2000);
   }
   if (sectionIndex !== 4) {
-    $("#new-scroll-button").fadeIn(1000);
+    $("#scroll-button").fadeIn(1000);
   }
 }
 
 async function initScrollButton(windowHeight) {
-  $("#new-scroll-button").click(() => scroll(windowHeight));
+  $("#scroll-button").click(() => scroll(windowHeight));
   await timer(1600);
-  $("#new-scroll-button").fadeIn(2000);
+  $("#scroll-button").fadeIn(2000);
 }
 
 /****************** STUFF THAT ACTUALL HAPPENS ******************/
