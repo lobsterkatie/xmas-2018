@@ -93,6 +93,7 @@ function enumerateJQuery(jqueryObj) {
 }
 
 async function scroll(windowHeight) {
+  $("#scroll-button").hide();
   window.scrollBy({
     top: windowHeight,
     behavior: "smooth"
@@ -108,9 +109,23 @@ async function scroll(windowHeight) {
       await timer(delay);
     }
   }
+
+  //for other sections (except the last), wait, then  show the scroll button
+  if (sectionIndex !== 1) {
+    await timer(2000);
+  }
+  if (sectionIndex !== 4) {
+    $("#scroll-button").fadeIn(1000);
+  }
+}
+
+async function initScrollButton(windowHeight) {
+  $("#scroll-button").click(() => scroll(windowHeight));
+  await timer(2000);
+  $("#scroll-button").fadeIn(2000);
 }
 
 /****************** STUFF THAT ACTUALL HAPPENS ******************/
 
 makeGallery(windowHeight);
-$("#scroll-button").click(() => scroll(windowHeight));
+initScrollButton(windowHeight);

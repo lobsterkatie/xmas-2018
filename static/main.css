@@ -30,6 +30,7 @@ body {
   padding: 1vh;
   transform: translateX(-3vh);
   cursor: pointer;
+  display: none;
 }
 
 @font-face {
