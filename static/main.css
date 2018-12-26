@@ -1,7 +1,7 @@
 body {
-  background-color: #172121;
+  background-color: #0c0c1c;
   font-family: "Waiting for the Sunrise", cursive;
-  color: #b8d3ee;
+  color: #90b7ee;
   text-align: center;
   font-size: 15vh;
 }
@@ -50,7 +50,7 @@ body {
 #arrow {
   transform: rotate(90deg) translate(-9vh, 1vh);
   width: 11vh;
-  fill: #b8d3ee;
+  fill: #90b7ee;
 }
 
 .star {
@@ -89,4 +89,12 @@ body {
 .nGY2ViewerToolsTopRight {
   margin-right: 10px;
   font-size: 12pt;
+}
+
+#merry {
+  color: #d22d2d;
+}
+
+#christmas {
+  color: #04a232;
 }

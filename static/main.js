@@ -34,7 +34,7 @@ async function _makeGallery(windowHeight) {
   let thumbnailDimension = windowHeight / 5;
 
   $("#gallery").nanogallery2({
-    galleryTheme: { thumbnail: { background: "#000" } },
+    galleryTheme: { thumbnail: { background: "#0c0c1c" } },
     thumbnailHeight: thumbnailDimension,
     thumbnailWidth: thumbnailDimension,
     itemsBaseURL: "/static/img/",
