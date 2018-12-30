@@ -1,13 +1,22 @@
+:root {
+  --default-text-color: #90b7ee;
+}
+
 body {
+  margin: 0;
   background-color: #0c0c1c;
   font-family: "Waiting for the Sunrise", cursive;
-  color: #90b7ee;
+  color: var(--default-text-color);
   text-align: center;
-  font-size: 15vh;
+  font-size: calc(15 * var(--scaled-vh));
 }
 
 .window-height {
   height: 100vh;
+}
+
+.content-height {
+  height: calc(100 * var(--scaled-vh));
 }
 
 .flex {
@@ -24,19 +33,23 @@ body {
   font-size: 50%;
   line-height: 100%;
   margin-top: 0;
-  margin-bottom: 2.5vh;
+  margin-bottom: calc(2.5 * var(--scaled-vh));
 }
 
 .section-body-img {
-  height: 80vh;
+  height: calc(80 * var(--scaled-vh));
+}
+
+#adventure-awaits {
+  display: none;
 }
 
 #scroll-button {
   position: fixed;
-  height: 20vh;
-  width: 9vh;
-  right: 2vh;
-  bottom: 2vh;
+  height: calc(20 * var(--scaled-vh));
+  width: calc(9 * var(--scaled-vh));
+  right: calc(2 * var(--scaled-vh));
+  bottom: calc(2 * var(--scaled-vh));
   cursor: pointer;
   display: none;
 }
@@ -48,9 +61,10 @@ body {
 }
 
 #arrow {
-  transform: rotate(90deg) translate(-9vh, 1vh);
-  width: 11vh;
-  fill: #90b7ee;
+  transform: rotate(90deg)
+    translate(calc(-9 * var(--scaled-vh)), calc(1 * var(--scaled-vh)));
+  width: calc(11 * var(--scaled-vh));
+  fill: var(--default-text-color);
 }
 
 .star {
@@ -71,7 +85,7 @@ body {
 }
 
 .parenthetical {
-  margin-top: 3vh;
+  margin-top: calc(3 * var(--scaled-vh));
 }
 
 .nGY2ViewerContainer {

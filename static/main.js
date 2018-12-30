@@ -1,6 +1,10 @@
 /****************** USEFUL GLOBALS ******************/
 
 let windowHeight = $(window).height();
+
+// in order to enforce a minimum aspect ratio
+let contentHeight = calcContentHeight(windowHeight);
+
 let sectionIndex = 0;
 
 /****************** HELPER FUNCTIONS FOR GALLERY ******************/
@@ -8,30 +12,32 @@ let sectionIndex = 0;
 // hack to make flexbox work, so the gallery can be centered vertically:
 // wait to put flex class on until the gallery is fully made
 // in the meantime, hide it so we don't see it move when the class is added
-async function makeGallery(windowHeight) {
+async function makeGallery(contentHeight) {
   $("#gallery").css("visibility", "hidden");
 
   // wait for the gallery to finish constructing itself
-  await _makeGallery(windowHeight);
+  await _makeGallery(contentHeight);
 
   // psych! it's not done.
   // wait an extra second until the gallery is *actually* done, then make it
   // flex-y and show it
   setTimeout(() => {
-    // further hack to make vertical centering work
+    // further hack to make vertical centering work - make the wrapper div
+    // have a height equal to its contents
     $(".nGY2Gallery").height($(".nGY2GallerySub").height());
 
     $("#pictures").addClass("flex");
+    $("#pictures-wrapper").addClass("flex");
     $("#gallery").css("visibility", "visible");
   }, 1000);
 }
 
 // wrap the gallery construction in an async function to make it promise-y and
 // awaitable
-async function _makeGallery(windowHeight) {
+async function _makeGallery(contentHeight) {
   // we want the whole gallery to be 80% of the viewport height, and there
   // 4 rows, so each row's height should be 20% of the viewport height
-  let thumbnailDimension = windowHeight / 5;
+  let thumbnailDimension = contentHeight / 5;
 
   $("#gallery").nanogallery2({
     galleryTheme: { thumbnail: { background: "#0c0c1c" } },
@@ -127,7 +133,39 @@ async function initScrollButton(windowHeight) {
   $("#scroll-button").fadeIn(2000);
 }
 
+/****************** HELPER FUNCTIONS FOR RESIZING ******************/
+
+//enforce aspect ratio by capping height in comparison to width
+function calcContentHeight(windowHeight) {
+  let windowWidth = $(window).width();
+  return Math.min(windowHeight, windowWidth / 1.8);
+}
+
+function setContentScale(contentHeight) {
+  let root = document.documentElement;
+  root.style.setProperty("--scaled-vh", contentHeight / 100 + "px");
+}
+
+// set the `scaled-vh` CSS variable on page-load and reset it on page
+// resize
+function enableScaling(contentHeight) {
+  setContentScale(contentHeight);
+
+  // resizing not currentyly working for gallery
+  $(window).resize(() => {
+    let newWindowHeight = $(window).height();
+    let newContentHeight = calcContentHeight(newWindowHeight);
+
+    // reset the scrolling behavior for the new window size
+    $("#scroll-button").off();
+    $("#scroll-button").click(() => scroll(newWindowHeight));
+
+    setContentScale(newContentHeight);
+    // makeGallery(newContentHeight); //not working!
+  });
+}
 /****************** STUFF THAT ACTUALL HAPPENS ******************/
 
-makeGallery(windowHeight);
+enableScaling(contentHeight);
 initScrollButton(windowHeight);
+makeGallery(contentHeight);
