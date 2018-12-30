@@ -52,6 +52,7 @@ async function _makeGallery(contentHeight) {
     thumbnailHoverEffect2: "image_scale_1.00_.95",
     viewerToolbar: { display: false },
     viewerTools: { topLeft: "", topRight: "closeButton" },
+    imageTransition: "slideAppear",
 
     galleryMosaic: [
       { r: 1, c: 1, w: 2, h: 2 },
