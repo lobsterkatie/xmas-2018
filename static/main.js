@@ -89,15 +89,33 @@ async function _makeGallery(contentHeight) {
 
 /****************** HELPER FUNCTIONS FOR SCROLLING ******************/
 
+// an awaitable timer to pause script execution for the given number of
+// milliseconds
 function timer(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+// like Python's enumerate, but for a Jquery selector set
 function enumerateJQuery(jqueryObj) {
   let array = $.makeArray(jqueryObj);
   return array.entries();
 }
 
+// make the text in the second section appear one line at a time
+async function showText() {
+  const delays = [2200, 2400, 2600, 2800, 1400, 2000, 600];
+
+  // wait a second after scrolling to start
+  await timer(1000);
+
+  //show each line and then pause before showing the next one
+  for (let [i, line] of enumerateJQuery($(".appearing-block"))) {
+    $(line).animate({ opacity: 1 }, 1000);
+    await timer(delays[i]);
+  }
+}
+
+// scroll when the scroll button is clicked
 async function scroll(windowHeight) {
   $("#scroll-button").hide();
 
@@ -109,20 +127,12 @@ async function scroll(windowHeight) {
 
   // make the text in the second section appear one line at a time
   if (sectionIndex === 1) {
-    const delays = [2200, 2400, 2600, 2800, 1400, 2000, 2600];
-
-    await timer(1000);
-    for (let [i, line] of enumerateJQuery($(".appearing-block"))) {
-      $(line).animate({ opacity: 1 }, 1000);
-      await timer(delays[i]);
-    }
+    await showText();
   }
 
-  //for other sections (except the last), wait, then  show the scroll button
-  if (sectionIndex !== 1) {
-    await timer(2000);
-  }
+  //for every section except the last, wait, then show the scroll button
   if (sectionIndex !== 4) {
+    await timer(2000);
     $("#scroll-button").fadeIn(1000);
   }
 }
