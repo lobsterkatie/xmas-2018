@@ -103,14 +103,14 @@ function enumerateJQuery(jqueryObj) {
 
 // make the text in the second section appear one line at a time
 async function showText() {
-  const delays = [2200, 2400, 2600, 2800, 1400, 2000, 600];
+  const delays = [4000, 4300, 4300, 4000, 2000, 3800, 2000];
 
   // wait a second after scrolling to start
   await timer(1000);
 
   //show each line and then pause before showing the next one
   for (let [i, line] of enumerateJQuery($(".appearing-block"))) {
-    $(line).animate({ opacity: 1 }, 1000);
+    $(line).animate({ opacity: 1 }, 3000);
     await timer(delays[i]);
   }
 }
@@ -132,15 +132,15 @@ async function scroll(windowHeight) {
 
   //for every section except the last, wait, then show the scroll button
   if (sectionIndex !== 4) {
-    await timer(2000);
-    $("#scroll-button").fadeIn(1000);
+    await timer(3000);
+    $("#scroll-button").fadeIn(4000);
   }
 }
 
 async function initScrollButton(windowHeight) {
   $("#scroll-button").click(() => scroll(windowHeight));
-  await timer(1600);
-  $("#scroll-button").fadeIn(2000);
+  await timer(4000);
+  $("#scroll-button").fadeIn(5000);
 }
 
 /****************** HELPER FUNCTIONS FOR RESIZING ******************/
@@ -174,8 +174,17 @@ function enableScaling(contentHeight) {
     // makeGallery(newContentHeight); //not working!
   });
 }
+
+/****************** HELPER FUNCTION FOR SPLASH SCREEN ******************/
+
+async function showSplashScreen() {
+  await timer(500);
+  $("#adventure-awaits").fadeIn(4000);
+}
+
 /****************** STUFF THAT ACTUALL HAPPENS ******************/
 
 enableScaling(contentHeight);
+showSplashScreen();
 initScrollButton(windowHeight);
 makeGallery(contentHeight);
