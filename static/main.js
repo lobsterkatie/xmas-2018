@@ -102,18 +102,52 @@ function enumerateJQuery(jqueryObj) {
   return array.entries();
 }
 
+async function showSplashScreenSection() {
+  await timer(500);
+  $("#adventure-awaits").fadeIn(4000);
+  await timer(4000);
+  $("#scroll-button").fadeIn(4000);
+}
+
 // make the text in the second section appear one line at a time
-async function showText() {
+async function showTextSection() {
   const delays = [4000, 4300, 4300, 4000, 2000, 3800, 2000];
 
   // wait a second after scrolling to start
   await timer(1000);
 
   //show each line and then pause before showing the next one
-  for (let [i, line] of enumerateJQuery($(".appearing-block"))) {
+  for (let [i, line] of enumerateJQuery($("div#text .appearing-block"))) {
     $(line).animate({ opacity: 1 }, 3000);
     await timer(delays[i]);
   }
+  $("#scroll-button").fadeIn(4000);
+}
+
+async function showAirstreamSection() {
+  await timer(500);
+  $("#home-base").animate({ opacity: 1 }, 3000);
+  await timer(3000);
+  $("#airstream-pic").animate({ opacity: 1 }, 4000);
+  await timer(4000);
+  $("#scroll-button").fadeIn(4000);
+}
+
+async function showGallerySection() {
+  await timer(500);
+  $("#look-around").animate({ opacity: 1 }, 3000);
+  await timer(3000);
+  $("#gallery").animate({ opacity: 1 }, 4000);
+  await timer(30000);
+  $("#scroll-button").fadeIn(4000);
+}
+
+async function showMCSection(params) {
+  await timer(500);
+  $("#love-you").animate({ opacity: 1 }, 3000);
+  await timer(3000);
+  $("#merry").animate({ opacity: 1 }, 3000);
+  $("#christmas").animate({ opacity: 1 }, 3000);
 }
 
 // scroll when the scroll button is clicked
@@ -126,22 +160,26 @@ async function scroll(windowHeight) {
   });
   sectionIndex = sectionIndex + 1;
 
-  // make the text in the second section appear one line at a time
+  // show the appropriate section
   if (sectionIndex === 1) {
-    await showText();
+    await showTextSection();
   }
 
-  //for every section except the last, wait, then show the scroll button
-  if (sectionIndex !== 4) {
-    await timer(3000);
-    $("#scroll-button").fadeIn(4000);
+  if (sectionIndex === 2) {
+    await showAirstreamSection();
+  }
+
+  if (sectionIndex === 3) {
+    await showGallerySection();
+  }
+
+  if (sectionIndex === 4) {
+    await showMCSection();
   }
 }
 
 async function initScrollButton(windowHeight) {
   $("#scroll-button").click(() => scroll(windowHeight));
-  await timer(4000);
-  $("#scroll-button").fadeIn(5000);
 }
 
 /****************** HELPER FUNCTIONS FOR RESIZING ******************/
@@ -176,16 +214,9 @@ function enableScaling(contentHeight) {
   });
 }
 
-/****************** HELPER FUNCTION FOR SPLASH SCREEN ******************/
-
-async function showSplashScreen() {
-  await timer(500);
-  $("#adventure-awaits").fadeIn(4000);
-}
-
 /****************** STUFF THAT ACTUALL HAPPENS ******************/
 
 enableScaling(contentHeight);
-showSplashScreen();
+showSplashScreenSection();
 initScrollButton(windowHeight);
 makeGallery(contentHeight);
